@@ -2,7 +2,7 @@ module PixelCurtain
   class Curtain
     def initialize(file_name)
       @source_image = ChunkyPNG::Image.from_file(file_name)
-      @output = ChunkyPNG::Image.new(400,300)
+      @output = ChunkyPNG::Image.new(1440,900)
     end
   
     def process(number_of_divisions=10)
