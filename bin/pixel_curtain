@@ -4,11 +4,12 @@ dir = File.expand_path(File.dirname(__FILE__))
 require dir + '/../lib/pixel_curtain'
 
 input_file = ARGV[0]
+output_file = "#{File.basename(input_file, ".*")}-output.png"
 
 if input_file.nil?
   puts "input file required"
 else
   curtain = PixelCurtain::Curtain.new(input_file)
-  curtain.process(20)
-  curtain.save("output.png")
+  curtain.process(rand(20)+5)
+  curtain.save(output_file)
 end
