@@ -1,8 +1,8 @@
 module PixelCurtain 
   class Curtain
     include Magick
-    def initialize(file_name)
-      @source_image = Image.read(file_name).first
+    def initialize(file_path)
+      @source_image = Image.read(file_path).first
       @output = Image.new(1440,900)
     end
   
@@ -28,8 +28,19 @@ module PixelCurtain
       @output    
     end
   
-    def save(file_name)
-      @output.write(file_name)
+    def save(file_name, options = {})
+      
+      options[:temp_file] = false if options[:temp_file].nil?
+      
+      if options[:temp_file]
+        output_file = Tempfile.new(['pixel_curtain', 'png'])
+      else
+        output_file = File.new(file_name, 'w')
+      end
+      
+      @output.write("png:" + output_file.path)
+      
+      return output_file
     end
   
     private
