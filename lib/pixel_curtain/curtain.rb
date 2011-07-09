@@ -1,3 +1,6 @@
+require 'rubygems'
+require 'RMagick'
+
 module PixelCurtain 
   class Curtain
     include Magick
