@@ -9,26 +9,9 @@ module PixelCurtain
       @output = Image.new(1440,900)
     end
   
-    def process(number_of_divisions=10)
-    
-      if (number_of_divisions > @source_image.columns)
-        number_of_divisions = @source_image.columns
-      end
-    
-      source_division_size = @source_image.columns / number_of_divisions
-      destination_division_size = @output.columns / number_of_divisions
-    
-      gc = Draw.new
-      
-      (0...number_of_divisions).each do |x|
-        avgPixel = average_color(@source_image.crop(source_division_size*x,0,
-                    source_division_size,@source_image.rows))
-        gc.fill(avgPixel)
-        gc.rectangle(x*destination_division_size,0,x*destination_division_size+destination_division_size,@output.rows)
-        gc.draw(@output)
-      end
-      
-      @output    
+    # Do nothing, this is to be implemented by subclasses
+    def process(options = {})
+      @output
     end
   
     def save(file_name, options = {})
