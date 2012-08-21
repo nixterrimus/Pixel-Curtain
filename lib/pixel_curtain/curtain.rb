@@ -4,8 +4,12 @@ require 'RMagick'
 module PixelCurtain 
   class Curtain
     include Magick
-    def initialize(file_path)
-      @source_image = Image.read(file_path).first
+    def initialize(source)
+      if source.class == String
+        @source_image = Image.read(file_path).first
+      elsif source.class == Image
+        @source_image = source
+      end
       @output = Image.new(1440,900)
     end
   
